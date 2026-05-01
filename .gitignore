@@ -5,4 +5,7 @@ __pycache__/
 venv/
 .idea/
 .vscode/
-allure-results/
+allure-results/*
+!allure-results/.gitkeep
+allure-report/*
+!allure-report/.gitkeep

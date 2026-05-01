@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 class CreateRecipePageLocators:
     PAGE_HEADING = (By.XPATH, "//h1[normalize-space()='Создание рецепта']")
-    TITLE_FIELD = (By.CSS_SELECTOR, "input.styles_inputField__3eqTj:not([class*='ingredient']):not([type='file'])")
+    TITLE_FIELD = (By.XPATH, "//div[.//*[normalize-space()='Название рецепта']]//input")
     INGREDIENT_QUERY_FIELD = (By.CSS_SELECTOR, "input[class*='ingredientsInput']")
     INGREDIENT_AMOUNT_FIELD = (By.CSS_SELECTOR, "input[class*='ingredientsAmountValue']")
     ADD_INGREDIENT_BUTTON = (By.XPATH, "//*[normalize-space()='Добавить ингредиент']")
