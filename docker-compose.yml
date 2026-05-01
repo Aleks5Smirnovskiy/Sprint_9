@@ -1,0 +1,43 @@
+services:
+  selenoid:
+    image: aerokube/selenoid:latest-release
+    command:
+      - -conf
+      - /etc/selenoid/browsers.json
+      - -container-network
+      - foodgram-tests
+      - -limit
+      - "4"
+    volumes:
+      - ./browser.json:/etc/selenoid/browsers.json:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:4444/status"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - foodgram-tests
+
+  tests:
+    build:
+      context: .
+    depends_on:
+      selenoid:
+        condition: service_healthy
+    command: >
+      sh -c "pytest --selenoid-uri http://selenoid:4444/wd/hub --alluredir=allure-results; status=$$?; if [ -d allure-results ]; then allure generate allure-results --clean -o allure-report; fi; exit $$status"
+    environment:
+      BASE_URL: https://foodgram-frontend-1.foodgram.education-services.ru
+      API_URL: https://foodgram-backend-1.foodgram.education-services.ru/api
+      BROWSER: chrome
+      BROWSER_VERSION: "128.0"
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
+    networks:
+      - foodgram-tests
+
+networks:
+  foodgram-tests:
+    name: foodgram-tests

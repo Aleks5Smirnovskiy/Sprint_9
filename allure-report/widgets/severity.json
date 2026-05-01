@@ -1,0 +1,1 @@
+[{"uid":"89fff51d0dbe769","name":"Пользователь может войти в систему","time":{"start":1777662020667,"stop":1777662036354,"duration":15687},"status":"broken","severity":"normal"},{"uid":"84e419f882964f6c","name":"Авторизованный пользователь может создать рецепт","time":{"start":1777662038846,"stop":1777662038846,"duration":0},"status":"broken","severity":"normal"}]
