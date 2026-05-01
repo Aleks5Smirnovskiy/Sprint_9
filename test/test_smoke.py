@@ -9,7 +9,7 @@ class TestSmoke:
         assert True
         
     @allure.title("Browser opens")
-    def test_browser_opens(self, browser):
+    def test_browser_opens(self, browser, attach_screenshot_on_failure):
         """Проверка что браузер открывается"""
         browser.get("https://www.google.com")
         assert "Google" in browser.title

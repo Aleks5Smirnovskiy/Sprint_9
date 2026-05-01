@@ -98,7 +98,7 @@ def pytest_runtest_makereport(item: pytest.Item, call: pytest.CallInfo):
     setattr(item, f"rep_{report.when}", report)
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def attach_screenshot_on_failure(request: pytest.FixtureRequest, browser) -> None:
     yield
     if hasattr(request.node, "rep_call") and request.node.rep_call.failed:
