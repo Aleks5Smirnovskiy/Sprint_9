@@ -6,7 +6,7 @@ from data.test_data import build_recipe_data
 @allure.feature("Создание рецепта")
 class TestRecipeCreation:
     @allure.title("Авторизованный пользователь может создать рецепт")
-    def test_authorized_user_can_create_recipe(self, create_recipe_page):
+    def test_authorized_user_can_create_recipe(self, create_recipe_page, attach_screenshot_on_failure):
         recipe_data = build_recipe_data()
 
         recipe_details_page = create_recipe_page.create_recipe(recipe_data)

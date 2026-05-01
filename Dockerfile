@@ -7,7 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl openjdk-17-jre-headless tar \
+    && apt-get install -y --no-install-recommends curl openjdk-21-jre-headless tar \
     && rm -rf /var/lib/apt/lists/*
 
 ARG ALLURE_VERSION=2.29.0
