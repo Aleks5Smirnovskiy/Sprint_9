@@ -50,12 +50,8 @@ class BasePage:
     @allure.step("Fill field with value")
     def fill(self, locator: tuple[str, str], value: str) -> None:
         element = self.wait_for_visible(locator)
-        self.driver.execute_script("""
-            arguments[0].value = arguments[1];
-            arguments[0].dispatchEvent(new Event('input', { bubbles: true }));
-            arguments[0].dispatchEvent(new Event('change', { bubbles: true }));
-            arguments[0].dispatchEvent(new Event('blur', { bubbles: true }));
-        """, element, value)
+        element.clear()
+        element.send_keys(value)
 
     @allure.step("Upload file {file_path}")
     def upload_file(self, locator: tuple[str, str], file_path: Path) -> None:

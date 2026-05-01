@@ -128,5 +128,5 @@ def login_page(browser, base_url: str) -> LoginPage:
 def create_recipe_page(login_page, test_user):
     registration_page = login_page.go_to_registration_page()
     login_page = registration_page.register(test_user)
-    recipes_page = login_page.login(test_user.email, test_user.password)
+    recipes_page = login_page.login(test_user.username, test_user.password)
     return recipes_page.open_create_recipe_page()

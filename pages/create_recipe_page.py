@@ -19,8 +19,11 @@ class CreateRecipePage(BasePage):
     def create_recipe(self, recipe: RecipeData) -> RecipeDetailsPage:
         self.fill(CreateRecipePageLocators.TITLE_FIELD, recipe.title)
         self.click(CreateRecipePageLocators.tag_button(recipe.tag))
-        self.fill(CreateRecipePageLocators.INGREDIENT_QUERY_FIELD, recipe.ingredient_query)
-        self.click(CreateRecipePageLocators.ingredient_option(recipe.ingredient_name))
+        ingredient_field = CreateRecipePageLocators.INGREDIENT_QUERY_FIELD
+        self.fill(ingredient_field, recipe.ingredient_query)
+        ingredient_locator = CreateRecipePageLocators.ingredient_option(recipe.ingredient_name)
+        self.wait_for_visible(ingredient_locator)
+        self.click(ingredient_locator)
         self.fill(CreateRecipePageLocators.INGREDIENT_AMOUNT_FIELD, recipe.ingredient_amount)
         self.click(CreateRecipePageLocators.ADD_INGREDIENT_BUTTON)
         self.fill(CreateRecipePageLocators.COOKING_TIME_FIELD, recipe.cooking_time)

@@ -21,4 +21,4 @@ class CreateRecipePageLocators:
 
     @staticmethod
     def ingredient_option(ingredient_name: str) -> tuple[str, str]:
-        return By.XPATH, f"//div[normalize-space()='{ingredient_name}']"
+        return By.XPATH, f"//*[@role='button' or @role='option' or self::li or self::div or self::span][normalize-space()='{ingredient_name}']"

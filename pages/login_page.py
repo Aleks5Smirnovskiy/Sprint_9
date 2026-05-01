@@ -22,11 +22,10 @@ class LoginPage(BasePage):
         return RegisterPage(self.driver, self.base_url)
 
     @allure.step("Log in as existing user")
-    def login(self, login_value: str, password: str) -> RecipesPage:
-        import time
-        self.fill(LoginPageLocators.LOGIN_FIELD, login_value)
+    def login(self, username: str, password: str) -> RecipesPage:
+        self.fill(LoginPageLocators.LOGIN_FIELD, username)
         self.fill(LoginPageLocators.PASSWORD_FIELD, password)
-        time.sleep(1)
+        self.wait_for_clickable(LoginPageLocators.LOGIN_BUTTON)
         self.click(LoginPageLocators.LOGIN_BUTTON)
         recipes_page = RecipesPage(self.driver, self.base_url)
         recipes_page.wait_until_opened()
