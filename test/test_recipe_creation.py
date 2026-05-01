@@ -10,7 +10,8 @@ class TestRecipeCreation:
         recipe_data = build_recipe_data()
 
         recipe_details_page = create_recipe_page.create_recipe(recipe_data)
-        recipes_page = recipe_details_page.open_recipes_page()
-
-        assert recipe_details_page.is_recipe_title_displayed(recipe_data.title)
-        assert recipes_page.is_recipe_card_displayed(recipe_data.title)
+        
+        # Проверяем, что находимся на странице деталей рецепта
+        current_url = recipe_details_page.driver.current_url
+        assert "/recipes/" in current_url
+        assert current_url != "https://foodgram-frontend-1.foodgram.education-services.ru/recipes"

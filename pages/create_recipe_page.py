@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import allure
+from selenium.webdriver.common.by import By
 
 from data.test_data import RecipeData
 from locators.create_recipe_page_locators import CreateRecipePageLocators
@@ -22,7 +23,6 @@ class CreateRecipePage(BasePage):
         ingredient_field = CreateRecipePageLocators.INGREDIENT_QUERY_FIELD
         self.fill(ingredient_field, recipe.ingredient_query)
         ingredient_locator = CreateRecipePageLocators.ingredient_option(recipe.ingredient_name)
-        self.wait_for_visible(ingredient_locator)
         self.click(ingredient_locator)
         self.fill(CreateRecipePageLocators.INGREDIENT_AMOUNT_FIELD, recipe.ingredient_amount)
         self.click(CreateRecipePageLocators.ADD_INGREDIENT_BUTTON)

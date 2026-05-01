@@ -3,9 +3,9 @@ from selenium.webdriver.common.by import By
 
 class CreateRecipePageLocators:
     PAGE_HEADING = (By.XPATH, "//h1[normalize-space()='Создание рецепта']")
-    TITLE_FIELD = (By.XPATH, "//div[.//*[normalize-space()='Название рецепта']]//input")
-    INGREDIENT_QUERY_FIELD = (By.XPATH, "//div[.//*[normalize-space()='Ингредиенты']]//input[1]")
-    INGREDIENT_AMOUNT_FIELD = (By.XPATH, "//div[.//*[normalize-space()='Ингредиенты']]//input[2]")
+    TITLE_FIELD = (By.CSS_SELECTOR, "input.styles_inputField__3eqTj:not([class*='ingredient']):not([type='file'])")
+    INGREDIENT_QUERY_FIELD = (By.CSS_SELECTOR, "input[class*='ingredientsInput']")
+    INGREDIENT_AMOUNT_FIELD = (By.CSS_SELECTOR, "input[class*='ingredientsAmountValue']")
     ADD_INGREDIENT_BUTTON = (By.XPATH, "//*[normalize-space()='Добавить ингредиент']")
     COOKING_TIME_FIELD = (By.XPATH, "//div[.//*[normalize-space()='Время приготовления']]//input")
     DESCRIPTION_FIELD = (
@@ -21,4 +21,4 @@ class CreateRecipePageLocators:
 
     @staticmethod
     def ingredient_option(ingredient_name: str) -> tuple[str, str]:
-        return By.XPATH, f"//*[@role='button' or @role='option' or self::li or self::div or self::span][normalize-space()='{ingredient_name}']"
+        return By.XPATH, f"//div[normalize-space()='{ingredient_name}' and ancestor::*[contains(@class, 'ingredientsInputs')]]"

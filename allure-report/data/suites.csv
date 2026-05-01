@@ -1,3 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","1788","Пользователь может войти в систему","test","2026-05-01","passed","2026-05-01","TestAuthorization","test_authorization","",""
-"","1117","Пользователь может создать аккаунт","test","2026-05-01","passed","2026-05-01","TestRegistration","test_registration","",""
+"","2726","Пользователь может войти в систему","test","2026-05-01","passed","2026-05-01","TestAuthorization","test_authorization","",""
+"","1822","Пользователь может создать аккаунт","test","2026-05-01","passed","2026-05-01","TestRegistration","test_registration","",""
+"","1609","Авторизованный пользователь может создать рецепт","test","2026-05-01","passed","2026-05-01","TestRecipeCreation","test_recipe_creation","",""
