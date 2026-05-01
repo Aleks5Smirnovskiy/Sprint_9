@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 
 import allure
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
@@ -48,9 +50,12 @@ class BasePage:
     @allure.step("Fill field with value")
     def fill(self, locator: tuple[str, str], value: str) -> None:
         element = self.wait_for_visible(locator)
-        element.click()
-        element.clear()
-        element.send_keys(value)
+        self.driver.execute_script("""
+            arguments[0].value = arguments[1];
+            arguments[0].dispatchEvent(new Event('input', { bubbles: true }));
+            arguments[0].dispatchEvent(new Event('change', { bubbles: true }));
+            arguments[0].dispatchEvent(new Event('blur', { bubbles: true }));
+        """, element, value)
 
     @allure.step("Upload file {file_path}")
     def upload_file(self, locator: tuple[str, str], file_path: Path) -> None:

@@ -17,6 +17,7 @@ class RegisterPage(BasePage):
     @allure.step("Register a new user")
     def register(self, user: UserData):
         from pages.login_page import LoginPage
+        import time
 
         self.wait_until_opened()
         self.fill(RegisterPageLocators.FIRST_NAME_FIELD, user.first_name)
@@ -24,6 +25,7 @@ class RegisterPage(BasePage):
         self.fill(RegisterPageLocators.USERNAME_FIELD, user.username)
         self.fill(RegisterPageLocators.EMAIL_FIELD, user.email)
         self.fill(RegisterPageLocators.PASSWORD_FIELD, user.password)
+        time.sleep(1)
         self.click(RegisterPageLocators.SUBMIT_BUTTON)
         login_page = LoginPage(self.driver, self.base_url)
         login_page.wait_for_url_contains(LoginPage.PAGE_PATH)
