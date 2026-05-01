@@ -26,7 +26,7 @@ services:
       selenoid:
         condition: service_healthy
     command: >
-      sh -c "pytest -v --selenoid-uri http://selenoid:4444/wd/hub --alluredir=allure-results; status=$$?; if [ -d allure-results ]; then allure generate allure-results --clean -o allure-report; fi; exit $$status"
+      sh -c "pytest -v test/test_smoke.py --selenoid-uri http://selenoid:4444/wd/hub --alluredir=allure-results; status=$$?; if [ -d allure-results ]; then allure generate allure-results --clean -o allure-report; fi; exit $$status"
     environment:
       BASE_URL: https://foodgram-frontend-1.foodgram.education-services.ru
       API_URL: https://foodgram-backend-1.foodgram.education-services.ru/api
