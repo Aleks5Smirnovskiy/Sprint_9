@@ -31,16 +31,24 @@ class BasePage:
     def wait_for_presence(self, locator: tuple[str, str]) -> WebElement:
         return self.wait.until(EC.presence_of_element_located(locator))
 
+    def wait_for_enabled(self, locator: tuple[str, str]) -> WebElement:
+        """Wait for element to become enabled (not disabled)"""
+        element = self.wait_for_visible(locator)
+        self.wait.until(lambda driver: not element.get_attribute("disabled"))
+        return element
+
     def wait_for_url_contains(self, url_fragment: str) -> bool:
         return self.wait.until(EC.url_contains(url_fragment))
 
     @allure.step("Click element")
     def click(self, locator: tuple[str, str]) -> None:
-        self.wait_for_clickable(locator).click()
+        element = self.wait_for_visible(locator)
+        self.driver.execute_script("arguments[0].click();", element)
 
     @allure.step("Fill field with value")
     def fill(self, locator: tuple[str, str], value: str) -> None:
         element = self.wait_for_visible(locator)
+        element.click()
         element.clear()
         element.send_keys(value)
 

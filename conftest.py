@@ -115,10 +115,8 @@ def api_client(api_url: str) -> FoodgramApiClient:
 
 
 @pytest.fixture
-def api_user(api_client: FoodgramApiClient):
-    user = build_user_data()
-    api_client.create_user(user)
-    return user
+def test_user():
+    return build_user_data()
 
 
 @pytest.fixture
@@ -127,6 +125,8 @@ def login_page(browser, base_url: str) -> LoginPage:
 
 
 @pytest.fixture
-def create_recipe_page(browser, base_url: str, api_user):
-    recipes_page = LoginPage(browser, base_url).open_page().login(api_user.username, api_user.password)
+def create_recipe_page(login_page, test_user):
+    registration_page = login_page.go_to_registration_page()
+    login_page = registration_page.register(test_user)
+    recipes_page = login_page.login(test_user.email, test_user.password)
     return recipes_page.open_create_recipe_page()

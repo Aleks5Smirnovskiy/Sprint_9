@@ -26,5 +26,5 @@ class RegisterPage(BasePage):
         self.fill(RegisterPageLocators.PASSWORD_FIELD, user.password)
         self.click(RegisterPageLocators.SUBMIT_BUTTON)
         login_page = LoginPage(self.driver, self.base_url)
-        login_page.is_opened()
+        login_page.wait_for_url_contains(LoginPage.PAGE_PATH)
         return login_page
