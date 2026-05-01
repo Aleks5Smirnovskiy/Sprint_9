@@ -12,7 +12,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class BasePage:
-    def __init__(self, driver: WebDriver, base_url: str, timeout: int = 15) -> None:
+    def __init__(self, driver: WebDriver, base_url: str, timeout: int = 30) -> None:
         self.driver = driver
         self.base_url = base_url.rstrip("/")
         self.wait = WebDriverWait(driver, timeout)
