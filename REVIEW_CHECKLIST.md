@@ -194,16 +194,20 @@ jobs:
 
 ## 🎯 Результаты
 
-### Workflow #13 - ✅ Успешно
-- **Статус**: Passed
-- **Длительность**: 1m 2s
+### Workflow #19 - ✅ Успешно (ФИНАЛЬНЫЙ)
+- **Статус**: ✅ Passed  
+- **Длительность**: 1m 1s
 - **Тесты**: 3/3 passed
-- **URL**: https://github.com/Aleks5Smirnovskiy/Sprint_9/actions/runs/25238018341
+- **Commit**: `ee61a06` - Simplify recipe test
+- **URL**: https://github.com/Aleks5Smirnovskiy/Sprint_9/actions/runs/25238763474
 
 ### Запущенные тесты:
 ✅ test_authorization.py::TestAuthorization::test_user_can_log_in
 ✅ test_recipe_creation.py::TestRecipeCreation::test_authorized_user_can_create_recipe  
 ✅ test_registration.py::TestRegistration::test_user_can_create_account
+
+### Предыдущий успешный workflow:
+- Workflow #13 - ✅ Passed (1m 2s, commit `1fca029`)
 
 ---
 
