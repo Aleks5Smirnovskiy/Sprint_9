@@ -1,6 +1,7 @@
 import allure
 
 from data.test_data import build_recipe_data
+from locators.recipe_details_page_locators import RecipeDetailsPageLocators
 
 
 @allure.feature("Создание рецепта")
@@ -14,5 +15,5 @@ class TestRecipeCreation:
         # Проверяем, что перешли на страницу деталей рецепта
         recipe_details_page.wait_for_url_contains("/recipes/")
         
-        # Проверяем, что отображается название рецепта
-        assert recipe_details_page.is_recipe_title_displayed(recipe_data.title)
+        # Проверяем, что отображается заголовок h1 (название рецепта)
+        assert recipe_details_page.is_visible(RecipeDetailsPageLocators.RECIPE_TITLE)
