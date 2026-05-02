@@ -11,7 +11,8 @@ class TestRecipeCreation:
 
         recipe_details_page = create_recipe_page.create_recipe(recipe_data)
         
-        # Проверяем, что находимся на странице деталей рецепта
-        current_url = recipe_details_page.driver.current_url
-        assert "/recipes/" in current_url
-        assert current_url != "https://foodgram-frontend-1.foodgram.education-services.ru/recipes"
+        # Проверяем, что перешли на страницу деталей рецепта
+        recipe_details_page.wait_for_url_contains("/recipes/")
+        
+        # Проверяем, что отображается название рецепта
+        assert recipe_details_page.is_recipe_title_displayed(recipe_data.title)
