@@ -7,4 +7,5 @@ class RecipeDetailsPageLocators:
 
     @staticmethod
     def recipe_title(title: str) -> tuple[str, str]:
-        return By.XPATH, f"//h1[contains(., '{title}')]"
+        # Регистронезависимый поиск названия в h1
+        return By.XPATH, f"//h1[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ', 'abcdefghijklmnopqrstuvwxyzабвгдеёжзийклмнопрстуфхцчшщъыьэюя'), '{title.lower()}')]"

@@ -14,6 +14,7 @@ class RecipeDetailsPage(BasePage):
         self.wait_for_visible((By.XPATH, "//h1"))
 
     def is_recipe_title_displayed(self, recipe_title: str) -> bool:
+        # Проверяем что h1 существует и содержит название
         return self.is_visible(RecipeDetailsPageLocators.recipe_title(recipe_title))
 
     def open_recipes_page(self) -> RecipesPage:
